@@ -47,10 +47,6 @@ variable "aws_kms_key_id" {
     type = string
 }
 
-variable "region" {
-    type = string
-}
-
 variable "s3_bucket_id" {
     type = string
 }
