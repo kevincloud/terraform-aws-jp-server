@@ -53,10 +53,10 @@ resource "aws_instance" "server" {
 
     tags = var.tags
 
-    depends_on = [
-        aws_dynamodb_table.customer-order-table,
-        aws_dynamodb_table.product-data-table
-    ]
+    # depends_on = [
+    #     aws_dynamodb_table.customer-order-table,
+    #     aws_dynamodb_table.product-data-table
+    # ]
 }
 
 resource "aws_security_group" "server-sg" {
