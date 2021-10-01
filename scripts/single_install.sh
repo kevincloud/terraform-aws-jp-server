@@ -80,23 +80,6 @@ mkdir -p /opt/nomad/plugins
 mkdir -p /var/run/consul
 
 # 
-# Setup AWS credentials file
-# 
-echo "...setting AWS credentials"
-sudo bash -c "cat >/root/.aws/config" << 'EOF'
-[default]
-aws_access_key_id=${AWS_ACCESS_KEY}
-aws_secret_access_key=${AWS_SECRET_KEY}
-aws_session_token=${AWS_SESSION_TOKEN}
-EOF
-sudo bash -c "cat >/root/.aws/credentials" << 'EOF'
-[default]
-aws_access_key_id=${AWS_ACCESS_KEY}
-aws_secret_access_key=${AWS_SECRET_KEY}
-aws_session_token=${AWS_SESSION_TOKEN}
-EOF
-
-# 
 # Reset all environment variables so they 
 # can be passed from this script into the 
 # next one.
@@ -106,9 +89,6 @@ export MYSQL_HOST="${MYSQL_HOST}"
 export MYSQL_USER="${MYSQL_USER}"
 export MYSQL_PASS="${MYSQL_PASS}"
 export MYSQL_DB="${MYSQL_DB}"
-export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
-export AWS_SESSION_TOKEN="${AWS_SESSION_TOKEN}"
 export AWS_KMS_KEY_ID="${AWS_KMS_KEY_ID}"
 export REGION="${REGION}"
 export S3_BUCKET="${S3_BUCKET}"
@@ -141,14 +121,14 @@ echo $CLIENT_IP $(echo "ip-$CLIENT_IP" | sed "s/\./-/g") >> /etc/hosts
 # 
 echo "...cloning repo"
 cd /root
-git clone --branch "${BRANCH_NAME}" https://github.com/kevincloud/javaperks-aws-single-server.git
+git clone --branch "${BRANCH_NAME}" https://github.com/kevincloud/terraform-aws-jp-server.git
 
 echo "Preparation complete."
 
 # 
 # Run the build scripts
 # 
-cd /root/javaperks-aws-single-server/
+cd /root/terraform-aws-jp-server/
 
 # Configures the Consul server
 

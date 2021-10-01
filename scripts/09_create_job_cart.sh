@@ -24,7 +24,7 @@ sudo bash -c "cat >/root/jobs/cart-api-job.nomad" <<EOF
                     }]
                 },
                 "Templates": [{
-                    "EmbeddedTmpl": "{{with secret \"secret/data/aws\"}}\nAWS_ACCESS_KEY_ID = \"{{.Data.data.aws_access_key}}\"\nAWS_SECRET_ACCESS_KEY = \"{{.Data.data.aws_secret_key}}\"\n{{end}}\nREGION = \"$REGION\"\nDDB_TABLE_NAME = \"$TABLE_CART\"\n",
+                    "EmbeddedTmpl": "REGION = \"$REGION\"\nDDB_TABLE_NAME = \"$TABLE_CART\"\n",
                     "DestPath": "secrets/file.env",
                     "Envvars": true
                 }],
